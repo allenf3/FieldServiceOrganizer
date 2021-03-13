@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldServiceOrganizer.Server", "Server\FieldServiceOrganizer.Server.csproj", "{A10D0E37-66D0-41DA-8B27-8F5E05369B12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldServiceOrganizer.Server", "Server\FieldServiceOrganizer.Server.csproj", "{A10D0E37-66D0-41DA-8B27-8F5E05369B12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldServiceOrganizer.Client", "Client\FieldServiceOrganizer.Client.csproj", "{49F99798-99D9-4E57-BC64-42BFEFF13005}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldServiceOrganizer.Client", "Client\FieldServiceOrganizer.Client.csproj", "{49F99798-99D9-4E57-BC64-42BFEFF13005}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldServiceOrganizer.Shared", "Shared\FieldServiceOrganizer.Shared.csproj", "{CFDBDF4D-313F-4E82-8EDE-E022306A4CF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldServiceOrganizer.Shared", "Shared\FieldServiceOrganizer.Shared.csproj", "{CFDBDF4D-313F-4E82-8EDE-E022306A4CF7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
