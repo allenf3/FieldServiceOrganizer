@@ -8,18 +8,13 @@ namespace FieldServiceOrganizer.Shared
 {
     public class Address
     {
-        public string RecordID { get; set; }
-        public string Results { get; set; }
+        public int Id { get; set; }
         public string FormattedAddress { get; set; }
-        public string Organization { get; set; }
         public string AddressLine1 { get; set; }
         public string AddressLine2 { get; set; }
         public string AddressLine3 { get; set; }
         public string AddressLine4 { get; set; }
         public string AddressLine5 { get; set; }
-        public string AddressLine6 { get; set; }
-        public string AddressLine7 { get; set; }
-        public string AddressLine8 { get; set; }
         public string SubPremises { get; set; }
         public string DoubleDependentLocality { get; set; }
         public string DependentLocality { get; set; }
@@ -27,6 +22,7 @@ namespace FieldServiceOrganizer.Shared
         public string SubAdministrativeArea { get; set; }
         public string AdministrativeArea { get; set; }
         public string PostalCode { get; set; }
+        public string PostalCodeType { get; set; } // P = PO Box, U = Unique (large org or govt. institution), M = Millitary, [Empty] = Regular
         public string AddressType { get; set; }
         public string AddressKey { get; set; }
         public string SubNationalArea { get; set; }
@@ -55,5 +51,11 @@ namespace FieldServiceOrganizer.Shared
         public string PostBox { get; set; }
         public string Latitude { get; set; }
         public string Longitude { get; set; }
+        public string MelissaAddressKey { get; set; }
+        public string MelissaAddressKeyBase { get; set; }
+        public string UTC { get; set; }
+        public string DeliveryIndicator { get; set; } // R = residence, B = business, U = unknown
+        public string DST { get; set; } // Y or N (observes Daylight Savings Time)
+        public string CensusKey { get; set; }
     }
 }
