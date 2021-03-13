@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using FieldServiceOrganizer.Shared;
 using System.Linq;
 using System.Threading.Tasks;
+using FieldServiceOrganizer.Shared;
+using Microsoft.AspNetCore.Components;
 
 namespace FieldServiceOrganizer.Client.Pages
 {
-    public partial class LocationsOverview
+    public partial class LocationDetail
     {
+        [Parameter]
+        public string LocationId { get; set; }
+
+        public Location Location { get; set; } = new Location();
+
         public IEnumerable<Location> Locations { get; set; }
 
         protected override Task OnInitializedAsync()
         {
             InitializeLocations();
+            Location = Locations.FirstOrDefault(l => l.Id == int.Parse(LocationId));
 
             return base.OnInitializedAsync();
         }
@@ -88,58 +95,7 @@ namespace FieldServiceOrganizer.Client.Pages
                         CensusKey = "171194033001025"
                     }
                 }
-                //new Location
-                //{
-                //    Id = 3
-
-                //},
-                //new Location
-                //{
-                //    Id = 4
-
-                //},
-                //new Location
-                //{
-                //    Id = 5
-
-                //},
-                //new Location
-                //{
-                //    Id = 6
-
-                //},
-                //new Location
-                //{
-                //    Id = 7
-
-                //},
-                //new Location
-                //{
-                //    Id = 8
-
-                //},
-                //new Location
-                //{
-                //    Id = 9
-
-                //},
-                //new Location
-                //{
-                //    Id = 10
-
-                //},
-                //new Location
-                //{
-                //    Id = 11
-
-                //},
-                //new Location
-                //{
-                //    Id =12
-
-                //}
             };
         }
-
     }
 }
