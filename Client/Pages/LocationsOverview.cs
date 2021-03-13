@@ -10,6 +10,13 @@ namespace FieldServiceOrganizer.Client.Pages
     {
         public IEnumerable<Location> Locations { get; set; }
 
+        protected override Task OnInitializedAsync()
+        {
+            InitializeAddresses();
+
+            return base.OnInitializedAsync();
+        }
+
         private void InitializeAddresses()
         {
             Locations = new List<Location>()
@@ -23,7 +30,11 @@ namespace FieldServiceOrganizer.Client.Pages
                         FormattedAddress = "1637 S 18th St; Saint Louis, MO 63104 - 2503",
                         AddressLine1 = "1637 S 18th St",
                         AddressLine2 = "Saint Louis, MO 63104 - 2503",
+                        Locality = "Saint Louis",
+                        SubAdministrativeArea = "Saint Louis City",
+                        AdministrativeArea = "MO",
                         PostalCode = "63104 - 2503",
+                        AddressType = "S",
                         AddressKey = "63104250337",
                         CountryName = "United States of America",
                         CountryISO3166_1_Alpha2 = "US",
@@ -76,58 +87,57 @@ namespace FieldServiceOrganizer.Client.Pages
                         DST = "Y",
                         CensusKey = "171194033001025"
                     }
-
-    },
-                new Location
-                {
-                    Id = 3
-
-                },
-                new Location
-                {
-                    Id = 4
-
-                },
-                new Location
-                {
-                    Id = 5
-
-                },
-                new Location
-                {
-                    Id = 6
-
-                },
-                new Location
-                {
-                    Id = 7
-
-                },
-                new Location
-                {
-                    Id = 8
-
-                },
-                new Location
-                {
-                    Id = 9
-
-                },
-                new Location
-                {
-                    Id = 10
-
-                },
-                new Location
-                {
-                    Id = 11
-
-                },
-                new Location
-                {
-                    Id =12
-
                 }
+                //new Location
+                //{
+                //    Id = 3
+
+                //},
+                //new Location
+                //{
+                //    Id = 4
+
+                //},
+                //new Location
+                //{
+                //    Id = 5
+
+                //},
+                //new Location
+                //{
+                //    Id = 6
+
+                //},
+                //new Location
+                //{
+                //    Id = 7
+
+                //},
+                //new Location
+                //{
+                //    Id = 8
+
+                //},
+                //new Location
+                //{
+                //    Id = 9
+
+                //},
+                //new Location
+                //{
+                //    Id = 10
+
+                //},
+                //new Location
+                //{
+                //    Id = 11
+
+                //},
+                //new Location
+                //{
+                //    Id =12
+
+                //}
             };
         }
 

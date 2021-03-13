@@ -11,6 +11,5 @@ namespace FieldServiceOrganizer.Shared
         public int Id { get; set; }
         public string OccupantName { get; set; }
         public Address Address { get; set; }
-        public ApplicationUser User { get; set; }
     }
 }

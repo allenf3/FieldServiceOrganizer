@@ -1,7 +1,35 @@
 ﻿@page "/locationsoverview"
 
-<h3>LocationsOverview</h3>
+<h1 class="page-title">All Locations</h1>
 
-@code {
-
+@if (Locations == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Location</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Zip</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var location in Locations)
+            {
+                    <tr>
+                        <td>@location.OccupantName</td>
+                        <td>@location.Address.AddressLine1</td>
+                        <td>@location.Address.AddressLine2</td>
+                        <td>@location.Address.Locality</td>
+                        <td>@location.Address.AdministrativeArea</td>
+                        <td>@location.Address.PostalCode</td>
+                    </tr>
+            }
+        </tbody>
+    </table>
 }
