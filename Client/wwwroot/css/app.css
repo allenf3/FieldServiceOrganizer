@@ -48,3 +48,8 @@ a, .btn-link {
         right: 0.75rem;
         top: 0.5rem;
     }
+
+
+span.highlight {
+    background-color:lightgray;
+}

@@ -1,1 +1,41 @@
 ﻿@page "/locationdetail/{LocationId}"
+
+<h1>Details for <span class="highlight">@Location.OccupantName</span></h1>
+
+<div class="col-12 row">
+    <div class="col-8">
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Location Id</label>
+            <div class="col-sm-8">
+                <label type="text" class="form-control-plaintext">@Location.Id</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Address</label>
+            <div class="col-sm-8">
+                <label type="text" class="form-control-plaintext">@Location.Address.AddressLine1</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">City</label>
+            <div class="col-sm-8">
+                <label type="text" class="form-control-plaintext">@Location.Address.Locality</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">State</label>
+            <div class="col-sm-8">
+                <label type="text" class="form-control-plaintext">@Location.Address.AdministrativeArea</label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Zip</label>
+            <div class="col-sm-8">
+                <label type="text" class="form-control-plaintext">@Location.Address.PostalCode</label>
+            </div>
+        </div>
+    </div>
+    <div class="col-4 oi-map">
+
+    </div>
+</div>
