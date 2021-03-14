@@ -16,6 +16,7 @@ else
                 <th>City</th>
                 <th>State</th>
                 <th>Zip</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -24,10 +25,14 @@ else
                     <tr>
                         <td>@location.OccupantName</td>
                         <td>@location.Address.AddressLine1</td>
-                        <td>@location.Address.AddressLine2</td>
                         <td>@location.Address.Locality</td>
                         <td>@location.Address.AdministrativeArea</td>
                         <td>@location.Address.PostalCode</td>
+                        <td>
+                            <a href="@($"locationdetail/{location.Id}")" class="btn btn-primary">
+                                <i class="fas fa-info-circle"></i>
+                            </a>
+                        </td>
                     </tr>
             }
         </tbody>
