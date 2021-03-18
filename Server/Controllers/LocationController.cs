@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FieldServiceOrganizer.Server.Controllers
 {
-    public class LocationsController : Controller
+    public class LocationController : Controller
     {
         public IActionResult Index()
         {
