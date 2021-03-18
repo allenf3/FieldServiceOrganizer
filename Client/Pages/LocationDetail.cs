@@ -32,7 +32,7 @@ namespace FieldServiceOrganizer.Client.Pages
                 {
                     Id = 1,
                     OccupantName = "Clementines",
-                    Address = new Address
+                    Address = new MelissaAddress
                     {
                         FormattedAddress = "1637 S 18th St; Saint Louis, MO 63104 - 2503",
                         AddressLine1 = "1637 S 18th St",
@@ -66,7 +66,7 @@ namespace FieldServiceOrganizer.Client.Pages
                 {
                     Id = 2,
                     OccupantName = "Master Auto Repair",
-                    Address = new Address
+                    Address = new MelissaAddress
                     {
                         FormattedAddress = "206 Vandalia St; Collinsville, IL 62234 - 3548",
                         AddressLine1 = "206 Vandalia St",

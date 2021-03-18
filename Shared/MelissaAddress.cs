@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FieldServiceOrganizer.Shared
 {
-    public class Address
+    public class MelissaAddress
     {
         public int Id { get; set; }
         public string FormattedAddress { get; set; }
