@@ -5,11 +5,9 @@ VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldServiceOrganizer.Server", "Server\FieldServiceOrganizer.Server.csproj", "{A10D0E37-66D0-41DA-8B27-8F5E05369B12}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldServiceOrganizer.Client", "Client\FieldServiceOrganizer.Client.csproj", "{49F99798-99D9-4E57-BC64-42BFEFF13005}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldServiceOrganizer.Shared", "Shared\FieldServiceOrganizer.Shared.csproj", "{CFDBDF4D-313F-4E82-8EDE-E022306A4CF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FSOTests", "FSOTests\FSOTests.csproj", "{616354B3-7585-4463-AF5D-49395A92D4CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSOTests", "FSOTests\FSOTests.csproj", "{616354B3-7585-4463-AF5D-49395A92D4CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +19,6 @@ Global
 		{A10D0E37-66D0-41DA-8B27-8F5E05369B12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A10D0E37-66D0-41DA-8B27-8F5E05369B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A10D0E37-66D0-41DA-8B27-8F5E05369B12}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49F99798-99D9-4E57-BC64-42BFEFF13005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49F99798-99D9-4E57-BC64-42BFEFF13005}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49F99798-99D9-4E57-BC64-42BFEFF13005}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49F99798-99D9-4E57-BC64-42BFEFF13005}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CFDBDF4D-313F-4E82-8EDE-E022306A4CF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CFDBDF4D-313F-4E82-8EDE-E022306A4CF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFDBDF4D-313F-4E82-8EDE-E022306A4CF7}.Release|Any CPU.ActiveCfg = Release|Any CPU

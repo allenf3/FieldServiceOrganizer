@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Client\FieldServiceOrganizer.Client.csproj" />
     <ProjectReference Include="..\Shared\FieldServiceOrganizer.Shared.csproj" />
   </ItemGroup>
 
