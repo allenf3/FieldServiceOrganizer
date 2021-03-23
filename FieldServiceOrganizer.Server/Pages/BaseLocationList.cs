@@ -9,6 +9,8 @@ namespace FieldServiceOrganizer.Server.Pages
 {
     public class BaseLocationList : ComponentBase
     {
+        public IEnumerable<Location> Locations { get; set; }
+
         protected override Task OnInitializedAsync()
         {
             LoadLocations();
@@ -66,6 +68,8 @@ namespace FieldServiceOrganizer.Server.Pages
                 State = "TN",
                 Zip = "85874"
             };
+
+            Locations = new List<Location> { location1, location2, location3, location4, location5 };
         }
 
     }
