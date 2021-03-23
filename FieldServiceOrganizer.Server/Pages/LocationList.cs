@@ -1,5 +1,6 @@
 ﻿using FieldServiceOrganizer.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace FieldServiceOrganizer.Server.Pages
 {
-    public class BaseLocationList : ComponentBase
+    public partial class LocationList : ComponentBase
     {
         public IEnumerable<Location> Locations { get; set; }
+        private readonly Location newLocation = new();
+        private EditContext editContext;
 
         protected override Task OnInitializedAsync()
         {
+            editContext = new EditContext(newLocation);
             LoadLocations();
             return base.OnInitializedAsync();
         }
