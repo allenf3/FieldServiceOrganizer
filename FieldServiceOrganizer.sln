@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldServiceOrganizer.Serve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldServiceOrganizer.Api", "FieldServiceOrganizer.Api\FieldServiceOrganizer.Api.csproj", "{0B42F9E3-91C9-437A-B2E1-F07A1C0D1CD6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldServiceOrganizer.Models", "FieldServiceOrganizer.Models\FieldServiceOrganizer.Models.csproj", "{78B995D7-BB07-4104-8BFA-666E58AC79DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0B42F9E3-91C9-437A-B2E1-F07A1C0D1CD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B42F9E3-91C9-437A-B2E1-F07A1C0D1CD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B42F9E3-91C9-437A-B2E1-F07A1C0D1CD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78B995D7-BB07-4104-8BFA-666E58AC79DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78B995D7-BB07-4104-8BFA-666E58AC79DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78B995D7-BB07-4104-8BFA-666E58AC79DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78B995D7-BB07-4104-8BFA-666E58AC79DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
