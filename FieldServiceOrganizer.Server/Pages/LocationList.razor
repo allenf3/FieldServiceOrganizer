@@ -4,6 +4,27 @@
 
 <h3>LocationList</h3>
 
-@code {
-
-}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Location</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var location in Locations)
+        {
+            <tr>
+                <td>@location.OccupantName</td>
+                <td>@location.FullAddress</td>
+                <td>@location.City</td>
+                <td>@location.State</td>
+                <td>@location.Zip</td>
+            </tr>
+        }
+    </tbody>
+</table>
