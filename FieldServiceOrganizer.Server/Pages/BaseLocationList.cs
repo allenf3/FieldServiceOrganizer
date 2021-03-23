@@ -15,8 +15,50 @@ namespace FieldServiceOrganizer.Server.Pages
             {
                 Id = "1",
                 OccupantName = "Denny's",
-                FullAddress = "123 South Street",
-
+                Direction = "N",
+                FullAddress = "123 N. South Street",
+                City = "Anytown",
+                State = "MO",
+                Zip = "55455"
+            };
+            Location location2 = new Location
+            {
+                Id = "2",
+                OccupantName = "Clementines",
+                FullAddress = "555 55Th Ave.",
+                City = "Mooresville",
+                State = "IL",
+                Zip = "84384"
+            };
+            
+            Location location3 = new Location
+            {
+                Id = "3",
+                OccupantName = "Master Auto Repair",
+                FullAddress = "928 Beasley St.",
+                City = "Greyville",
+                State = "NC",
+                Zip = "55455-4882"
+            };
+            
+            Location location4 = new Location
+            {
+                Id = "4",
+                OccupantName = "Warby Parker",
+                FullAddress = "4886 Highway 17",
+                City = "Twosville",
+                State = "IL",
+                Zip = "88343"
+            };
+            
+            Location location5 = new Location
+            {
+                Id = "5",
+                OccupantName = "Mattress City",
+                FullAddress = "9932 Oak Blvd.",
+                City = "Yorkshire",
+                State = "TN",
+                Zip = "85874"
             };
         }
 
