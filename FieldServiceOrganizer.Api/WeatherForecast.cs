@@ -1,6 +1,6 @@
 using System;
 
-namespace FieldServiceOrganizer.Server.Data
+namespace FieldServiceOrganizer.Api
 {
     public class WeatherForecast
     {
