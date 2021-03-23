@@ -74,7 +74,12 @@ namespace FieldServiceOrganizer.Server.Pages
             };
 
             Locations = new List<Location> { location1, location2, location3, location4, location5 };
-        }
 
+            newLocation.OccupantName = string.Empty;
+            newLocation.FullAddress = string.Empty;
+            newLocation.City = string.Empty;
+            newLocation.State = string.Empty;
+            newLocation.Zip = string.Empty;
+        }
     }
 }

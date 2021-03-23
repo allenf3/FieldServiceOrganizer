@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.17.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FieldServiceOrganizer.Models\FieldServiceOrganizer.Models.csproj" />
   </ItemGroup>
 
