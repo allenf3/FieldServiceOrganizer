@@ -28,13 +28,13 @@ namespace FieldServiceOrganizer.Models
         public string Unit { get; set; }
 
         [JsonProperty(PropertyName = "fullAddress")]
-        public bool FullAddress { get; set; }
+        public string FullAddress { get; set; }
 
         [JsonProperty(PropertyName = "city")]
-        public bool City { get; set; }
+        public string City { get; set; }
 
         [JsonProperty(PropertyName = "state")]
-        public bool State { get; set; }
+        public string State { get; set; }
 
         [JsonProperty(PropertyName = "zip")]
         public string Zip { get; set; }
