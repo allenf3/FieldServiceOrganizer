@@ -9,6 +9,12 @@ namespace FieldServiceOrganizer.Server.Pages
 {
     public class BaseLocationList : ComponentBase
     {
+        protected override Task OnInitializedAsync()
+        {
+            LoadLocations();
+            return base.OnInitializedAsync();
+        }
+
         private void LoadLocations()
         {
             Location location1 = new Location
