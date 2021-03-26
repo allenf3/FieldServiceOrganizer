@@ -16,17 +16,17 @@ namespace FieldServiceOrganizer.Server.Services
             _container = dbClient.GetContainer(databaseName, containerName);
         }
 
-        public async Task AddLocationAsync(Location location)
+        public async Task AddAsync(ICosmosItem item)
         {
-            await _container.CreateItemAsync<Location>(location, new PartitionKey(location.Id));
+            await _container.CreateItemAsync<ICosmosItem>(item, new PartitionKey(item.Id));
         }
 
-        public async Task DeleteLocationAsync(string id)
+        public async Task DeleteAsync(string id)
         {
-            await _container.DeleteItemAsync<Location>(id, new PartitionKey(id));
+            await _container.DeleteItemAsync<ICosmosItem>(id, new PartitionKey(id));
         }
 
-        public async Task<Location> GetLocationAsync(string id)
+        public async Task<ICosmosItem> GetSingleAsync(string id)
         {
             try
             {
@@ -39,10 +39,10 @@ namespace FieldServiceOrganizer.Server.Services
             }
         }
 
-        public async Task<IEnumerable<Location>> GetLocationsAsync(string queryString)
+        public async Task<IEnumerable<ICosmosItem>> GetAllAsync(string queryString)
         {
-            var query = _container.GetItemQueryIterator<Location>(new QueryDefinition(queryString));
-            List<Location> results = new List<Location>();
+            var query = _container.GetItemQueryIterator<ICosmosItem>(new QueryDefinition(queryString));
+            List<ICosmosItem> results = new List<ICosmosItem>();
             while (query.HasMoreResults)
             {
                 var response = await query.ReadNextAsync();
@@ -51,9 +51,9 @@ namespace FieldServiceOrganizer.Server.Services
             return results;
         }
 
-        public async Task UpdateLocationAsync(string id, Location location)
+        public async Task UpdateAsync(string id, ICosmosItem item)
         {
-            await _container.UpsertItemAsync<Location>(location, new PartitionKey(id));
+            await _container.UpsertItemAsync<ICosmosItem>(item, new PartitionKey(id));
         }
     }
 }

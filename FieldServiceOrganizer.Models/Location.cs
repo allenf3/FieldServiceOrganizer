@@ -7,8 +7,17 @@ using Newtonsoft.Json;
 
 namespace FieldServiceOrganizer.Models
 {
-    public class Location
+    public class Location : ICosmosItem
     {
+        public Location()
+        {
+            Type = GetType().Name;
+        }
+
+        [JsonProperty(PropertyName = "type")]
+        public string Type { get; init; }
+
+
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
@@ -38,5 +47,8 @@ namespace FieldServiceOrganizer.Models
 
         [JsonProperty(PropertyName = "zip")]
         public string Zip { get; set; }
+
+        [JsonProperty(PropertyName = "userId")]
+        public string UserId { get; set; }
     }
 }

@@ -33,12 +33,12 @@ namespace FieldServiceOrganizer.Server
         {
             string endpointUrl = Environment.GetEnvironmentVariable("EndpointUrl");
             string primaryKey = Environment.GetEnvironmentVariable("PrimaryKey");
-            string databaseName = Environment.GetEnvironmentVariable("DatabaseName");
-            string containerName = Environment.GetEnvironmentVariable("ContainerName");
+            string databaseName = "WorkScheduler";
+            string containerName = "FieldServiceOrganizer";
             Microsoft.Azure.Cosmos.CosmosClient client = new Microsoft.Azure.Cosmos.CosmosClient(endpointUrl, primaryKey);
             CosmosDbService cosmosDbService = new CosmosDbService(client, databaseName, containerName);
             Microsoft.Azure.Cosmos.DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
-            await database.Database.CreateContainerIfNotExistsAsync(containerName, "/id");
+            await database.Database.CreateContainerIfNotExistsAsync(containerName, "/Id");
 
             return cosmosDbService;
         }

@@ -1,4 +1,5 @@
 ﻿using FieldServiceOrganizer.Models;
+using FieldServiceOrganizer.Server.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using System;
@@ -13,6 +14,14 @@ namespace FieldServiceOrganizer.Server.Pages
         public IEnumerable<Location> Locations { get; set; }
         private readonly Location newLocation = new();
         private EditContext editContext;
+        private ICosmosDbService _cosmosDbService;
+
+        public LocationList() { }
+
+        public LocationList(ICosmosDbService cosmosDbService) : this()
+        {
+            _cosmosDbService = cosmosDbService;
+        }
 
         protected override Task OnInitializedAsync()
         {
