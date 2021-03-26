@@ -1,3 +1,4 @@
+using FieldServiceOrganizer.Server.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -23,10 +24,32 @@ namespace FieldServiceOrganizer.Server
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+
+        /// <summary>
+        /// Creates a Cosmos DB database and a container with the specified partition key.
+        /// </summary>
+        /// <returns></returns>
+        private static async Task<CosmosDbService> InitializeCosmosClientInstanceAsync(IConfiguration configurationSection)
+        {
+            string endpointUrl = Environment.GetEnvironmentVariable("EndpointUrl");
+            string primaryKey = Environment.GetEnvironmentVariable("PrimaryKey");
+            string databaseName = Environment.GetEnvironmentVariable("DatabaseName");
+            string containerName = Environment.GetEnvironmentVariable("ContainerName");
+            Microsoft.Azure.Cosmos.CosmosClient client = new Microsoft.Azure.Cosmos.CosmosClient(endpointUrl, primaryKey);
+            CosmosDbService cosmosDbService = new CosmosDbService(client, databaseName, containerName);
+            Microsoft.Azure.Cosmos.DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
+            await database.Database.CreateContainerIfNotExistsAsync(containerName, "/id");
+
+            return cosmosDbService;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(Configuration.GetSection("CosmosDb"))
+                                                    .GetAwaiter()
+                                                    .GetResult());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
