@@ -1,0 +1,66 @@
+﻿@page "/"
+
+<h3>LocationList</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Location</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var location in Locations)
+        {
+            <tr>
+                <td>@location.OccupantName</td>
+                <td>@location.FullAddress</td>
+                <td>@location.City</td>
+                <td>@location.State</td>
+                <td>@location.Zip</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<EditForm Model="@newLocation" OnValidSubmit="@LoadLocations">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <p>
+        <label>
+            Occupant Name:
+            <InputText @bind-Value="newLocation.OccupantName" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Address:
+            <InputText @bind-Value="newLocation.FullAddress" />
+        </label>
+    </p>
+    <p>
+        <label>
+            City:
+            <InputText @bind-Value="newLocation.City" />
+        </label>
+    </p>
+    <p>
+        <label>
+            State:
+            <InputText @bind-Value="newLocation.State" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Zip:
+            <InputText @bind-Value="newLocation.Zip" />
+        </label>
+    </p>
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+</EditForm>
