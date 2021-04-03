@@ -1,5 +1,9 @@
 ﻿@page "/"
 
+@using FieldServiceOrganizer.Server.Services
+
+@inject ICosmosDbService CosmosDbService 
+
 <h3>LocationList</h3>
 
 <table class="table">
@@ -27,7 +31,7 @@
     </tbody>
 </table>
 
-<EditForm Model="@newLocation" OnValidSubmit="@LoadLocations">
+<EditForm Model="@newLocation" OnValidSubmit="@AddLocation">
     <DataAnnotationsValidator />
     <ValidationSummary />
 

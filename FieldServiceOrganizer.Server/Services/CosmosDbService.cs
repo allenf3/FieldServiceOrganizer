@@ -40,21 +40,24 @@ namespace FieldServiceOrganizer.Server.Services
             }
         }
 
-        public async Task<IEnumerable<ICosmosItem>> GetAllAsync(string queryString)
+        //public async Task<IEnumerable<ICosmosItem>> GetAllAsync(string queryString)
+        public async Task<IEnumerable<Location>> GetAllAsync(string queryString)
+
         {
-            var query = _container.GetItemQueryIterator<ICosmosItem>(new QueryDefinition(queryString));
-            List<ICosmosItem> results = new List<ICosmosItem>();
-            while (query.HasMoreResults)
+            List<Location> items = new();
+            QueryDefinition query = new(queryString);
+            var response = _container.GetItemQueryIterator<Location>(query);
+            await foreach (var item in response)
             {
-                var response = await query.ReadNextAsync();
-                results.AddRange(response.ToList());
+                items.Add(item);
             }
-            return results;
+            return items;
         }
 
-        public async Task UpdateAsync(string id, ICosmosItem item)
+        public async Task<bool> UpdateAsync(string id, ICosmosItem item)
         {
-            await _container.UpsertItemAsync<ICosmosItem>(item, new PartitionKey(id));
+            var result = await _container.UpsertItemAsync<ICosmosItem>(item, new PartitionKey(id));
+            return (result.GetRawResponse().Status == 200);
         }
     }
 }
