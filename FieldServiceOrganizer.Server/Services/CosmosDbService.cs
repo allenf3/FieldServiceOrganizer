@@ -1,5 +1,5 @@
 ﻿using FieldServiceOrganizer.Models;
-using Microsoft.Azure.Cosmos;
+using Azure.Cosmos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,16 +9,17 @@ namespace FieldServiceOrganizer.Server.Services
 {
     public class CosmosDbService : ICosmosDbService
     {
-        private Container _container;
+        private readonly Container _container;
 
         public CosmosDbService(CosmosClient dbClient, string databaseName, string containerName)
         {
             _container = dbClient.GetContainer(databaseName, containerName);
         }
 
-        public async Task AddAsync(ICosmosItem item)
+        public async Task<bool> AddAsync(ICosmosItem item)
         {
-            await _container.CreateItemAsync<ICosmosItem>(item, new PartitionKey(item.Id));
+            var response = await _container.CreateItemAsync(item, new PartitionKey(item.Id));
+            return (response.GetRawResponse().Status == 200);
         }
 
         public async Task DeleteAsync(string id)
@@ -30,8 +31,8 @@ namespace FieldServiceOrganizer.Server.Services
         {
             try
             {
-                ItemResponse<Location> response = await _container.ReadItemAsync<Location>(id, new PartitionKey(id));
-                return response.Resource;
+                ItemResponse<ICosmosItem> response = await _container.ReadItemAsync<ICosmosItem>(id, new PartitionKey(id));
+                return response.Value;
             }
             catch(CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
