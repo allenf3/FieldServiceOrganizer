@@ -33,8 +33,8 @@ namespace FieldServiceOrganizer.Server
         {
             string endpointUrl = Environment.GetEnvironmentVariable("EndpointUrl");
             string primaryKey = Environment.GetEnvironmentVariable("PrimaryKey");
-            string databaseName = configurationSection.GetSection("DatabaseName").Value;
-            string containerName = configurationSection.GetSection("ContainerName").Value;
+            string databaseName = Environment.GetEnvironmentVariable("DatabaseName");
+            string containerName = Environment.GetEnvironmentVariable("ContainerName");
             Azure.Cosmos.CosmosClient client = new(endpointUrl, primaryKey);
             CosmosDbService cosmosDbService = new(client, databaseName, containerName);
             Azure.Cosmos.DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
