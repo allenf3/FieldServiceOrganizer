@@ -10,9 +10,9 @@ namespace FieldServiceOrganizer.Server.Services
     public interface ICosmosDbService
     {
         Task<IEnumerable<Location>> GetAllAsync(string query);
-        Task<ICosmosItem> GetSingleAsync(string id);
-        Task<bool> AddAsync(ICosmosItem item);
-        Task<bool> UpdateAsync(string id, ICosmosItem item);
+        Task<Location> GetSingleAsync(string id);
+        Task<bool> AddAsync(Location item);
+        Task<bool> UpdateAsync(string id, Location item);
         Task DeleteAsync(string id);
     }
 }

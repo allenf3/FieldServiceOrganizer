@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace FieldServiceOrganizer.Models
 {
-    public class Location : ICosmosItem
+    public class Location
     {
         public Location()
         {

@@ -16,7 +16,7 @@ namespace FieldServiceOrganizer.Server.Services
             _container = dbClient.GetContainer(databaseName, containerName);
         }
 
-        public async Task<bool> AddAsync(ICosmosItem item)
+        public async Task<bool> AddAsync(Location item)
         {
             var response = await _container.CreateItemAsync(item, new PartitionKey(item.Id));
             return (response.GetRawResponse().Status == 200);
@@ -24,14 +24,14 @@ namespace FieldServiceOrganizer.Server.Services
 
         public async Task DeleteAsync(string id)
         {
-            await _container.DeleteItemAsync<ICosmosItem>(id, new PartitionKey(id));
+            await _container.DeleteItemAsync<Location>(id, new PartitionKey(id));
         }
 
-        public async Task<ICosmosItem> GetSingleAsync(string id)
+        public async Task<Location> GetSingleAsync(string id)
         {
             try
             {
-                ItemResponse<ICosmosItem> response = await _container.ReadItemAsync<ICosmosItem>(id, new PartitionKey(id));
+                ItemResponse<Location> response = await _container.ReadItemAsync<Location>(id, new PartitionKey(id));
                 return response.Value;
             }
             catch(CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
@@ -54,7 +54,7 @@ namespace FieldServiceOrganizer.Server.Services
             return items;
         }
 
-        public async Task<bool> UpdateAsync(string id, ICosmosItem item)
+        public async Task<bool> UpdateAsync(string id, Location item)
         {
             var result = await _container.UpsertItemAsync<ICosmosItem>(item, new PartitionKey(id));
             return (result.GetRawResponse().Status == 200);
