@@ -56,7 +56,7 @@ namespace FieldServiceOrganizer.Server.Services
 
         public async Task<bool> UpdateAsync(string id, Location item)
         {
-            var result = await _container.UpsertItemAsync<ICosmosItem>(item, new PartitionKey(id));
+            var result = await _container.UpsertItemAsync<Location>(item, new PartitionKey(id));
             return (result.GetRawResponse().Status == 200);
         }
     }
