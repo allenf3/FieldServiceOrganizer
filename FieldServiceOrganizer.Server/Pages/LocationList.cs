@@ -24,15 +24,15 @@ namespace FieldServiceOrganizer.Server.Pages
             // return base.OnInitializedAsync();
         }
 
-        private async void AddLocation()
+        private async Task AddLocation()
         {
             editContext = new EditContext(newLocation);
             bool isValid = editContext.Validate();
             if (isValid)
             {
                 await _cosmosDbService.AddAsync(newLocation);
+                Locations = (await LoadLocations()).ToList();
             }
-            await LoadLocations();
         }
 
         private async Task<IEnumerable<Location>> LoadLocations()
@@ -56,6 +56,7 @@ namespace FieldServiceOrganizer.Server.Pages
         private async Task DeleteLocation(Location location)
         {
             await _cosmosDbService.DeleteAsync(location);
+            Locations = (await LoadLocations()).ToList();
         }
         
     }
