@@ -12,6 +12,8 @@ namespace FieldServiceOrganizer.Models
         public Location()
         {
             Type = GetType().Name;
+            Id = Guid.NewGuid();
+            UserId = Guid.NewGuid().ToString();
         }
 
         [JsonProperty(PropertyName = "type")]
@@ -19,7 +21,7 @@ namespace FieldServiceOrganizer.Models
 
 
         [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
+        public Guid Id { get; init; }
 
         [JsonProperty(PropertyName = "occupantName")]
         public string OccupantName { get; set; }
@@ -49,6 +51,6 @@ namespace FieldServiceOrganizer.Models
         public string Zip { get; set; }
 
         [JsonProperty(PropertyName = "userId")]
-        public string UserId { get; set; }
+        public string UserId { get; init; }
     }
 }

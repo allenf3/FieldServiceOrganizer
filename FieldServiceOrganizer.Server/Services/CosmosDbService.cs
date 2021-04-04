@@ -18,7 +18,7 @@ namespace FieldServiceOrganizer.Server.Services
 
         public async Task<bool> AddAsync(Location item)
         {
-            var response = await _container.CreateItemAsync(item, new PartitionKey(item.Id));
+            var response = await _container.CreateItemAsync(item, new PartitionKey(item.UserId));
             return (response.GetRawResponse().Status == 200);
         }
 

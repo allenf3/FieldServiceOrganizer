@@ -38,7 +38,7 @@ namespace FieldServiceOrganizer.Server
             Azure.Cosmos.CosmosClient client = new(endpointUrl, primaryKey);
             CosmosDbService cosmosDbService = new(client, databaseName, containerName);
             Azure.Cosmos.DatabaseResponse database = await client.CreateDatabaseIfNotExistsAsync(databaseName);
-            await database.Database.CreateContainerIfNotExistsAsync(containerName, "/Id");
+            await database.Database.CreateContainerIfNotExistsAsync(containerName, "/userId");
 
             return cosmosDbService;
         }
