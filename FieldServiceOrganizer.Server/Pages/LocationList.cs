@@ -30,7 +30,6 @@ namespace FieldServiceOrganizer.Server.Pages
             bool isValid = editContext.Validate();
             if (isValid)
             {
-                newLocation.Id = Guid.NewGuid().ToString();
                 await _cosmosDbService.AddAsync(newLocation);
             }
             await LoadLocations();
