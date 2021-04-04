@@ -22,9 +22,9 @@ namespace FieldServiceOrganizer.Server.Services
             return (response.GetRawResponse().Status == 200);
         }
 
-        public async Task DeleteAsync(string id)
+        public async Task DeleteAsync(Location location)
         {
-            await _container.DeleteItemAsync<Location>(id, new PartitionKey(id));
+            await _container.DeleteItemAsync<Location>(location.Id.ToString(), new PartitionKey(location.UserId));
         }
 
         public async Task<Location> GetSingleAsync(string id)

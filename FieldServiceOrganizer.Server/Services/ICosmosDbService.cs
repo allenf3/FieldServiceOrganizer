@@ -13,6 +13,6 @@ namespace FieldServiceOrganizer.Server.Services
         Task<Location> GetSingleAsync(string id);
         Task<bool> AddAsync(Location item);
         Task<bool> UpdateAsync(string id, Location item);
-        Task DeleteAsync(string id);
+        Task DeleteAsync(Location location);
     }
 }

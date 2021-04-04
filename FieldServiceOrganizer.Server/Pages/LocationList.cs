@@ -52,6 +52,11 @@ namespace FieldServiceOrganizer.Server.Pages
 
             return Locations;
         }
+
+        private async Task DeleteLocation(Location location)
+        {
+            await _cosmosDbService.DeleteAsync(location);
+        }
         
     }
 }

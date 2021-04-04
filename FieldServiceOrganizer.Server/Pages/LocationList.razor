@@ -27,7 +27,8 @@
                 <td>@location.City</td>
                 <td>@location.State</td>
                 <td>@location.Zip</td>
-                <td><button class="btn btn-danger">Delete</button></td>
+                <td><button class="btn btn-danger"
+                            @onclick="@(async () => await DeleteLocation(location))">Delete</button></td>
             </tr>
         }
     </tbody>
