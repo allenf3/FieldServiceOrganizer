@@ -21,7 +21,6 @@ namespace FieldServiceOrganizer.Server.Pages
         {
             _cosmosDbService = CosmosDbService;
             await LoadLocations();
-            // return base.OnInitializedAsync();
         }
 
         private async Task AddLocation()
@@ -32,7 +31,18 @@ namespace FieldServiceOrganizer.Server.Pages
             {
                 await _cosmosDbService.AddAsync(newLocation);
                 Locations = (await LoadLocations()).ToList();
+
+                ClearFormFields();
             }
+        }
+
+        private void ClearFormFields()
+        {
+            newLocation.OccupantName = string.Empty;
+            newLocation.FullAddress = string.Empty;
+            newLocation.City = string.Empty;
+            newLocation.State = string.Empty;
+            newLocation.Zip = string.Empty;
         }
 
         private async Task<IEnumerable<Location>> LoadLocations()
@@ -43,13 +53,6 @@ namespace FieldServiceOrganizer.Server.Pages
             {
                 Locations.Add(item);
             }
-
-            newLocation.OccupantName = string.Empty;
-            newLocation.FullAddress = string.Empty;
-            newLocation.City = string.Empty;
-            newLocation.State = string.Empty;
-            newLocation.Zip = string.Empty;
-
             return Locations;
         }
 
