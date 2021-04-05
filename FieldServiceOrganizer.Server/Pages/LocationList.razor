@@ -10,6 +10,7 @@
 <table class="table">
     <thead>
         <tr>
+            <th></th>
             <th>Location</th>
             <th>Address</th>
             <th>City</th>
@@ -22,6 +23,7 @@
         @foreach (var location in Locations)
         {
             <tr>
+                <td><input type ="checkbox" /></td>
                 <td>@location.OccupantName</td>
                 <td>@location.FullAddress</td>
                 <td>@location.City</td>
