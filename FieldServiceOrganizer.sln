@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.31025.194
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldServiceOrganizer.Server", "FieldServiceOrganizer.Server\FieldServiceOrganizer.Server.csproj", "{78647050-2014-4992-8520-93B9268117C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldServiceOrganizer.Api", "FieldServiceOrganizer.Api\FieldServiceOrganizer.Api.csproj", "{0B42F9E3-91C9-437A-B2E1-F07A1C0D1CD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldServiceOrganizer.Api", "FieldServiceOrganizer.Api\FieldServiceOrganizer.Api.csproj", "{0B42F9E3-91C9-437A-B2E1-F07A1C0D1CD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldServiceOrganizer.Models", "FieldServiceOrganizer.Models\FieldServiceOrganizer.Models.csproj", "{78B995D7-BB07-4104-8BFA-666E58AC79DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldServiceOrganizer.Models", "FieldServiceOrganizer.Models\FieldServiceOrganizer.Models.csproj", "{78B995D7-BB07-4104-8BFA-666E58AC79DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
