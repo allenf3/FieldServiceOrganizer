@@ -8,6 +8,6 @@ namespace FieldServiceOrganizer.Server.Services
 {
     public interface IMelissaApiService
     {
-        Task<MelissaNormalizedLocation> GetNormalizedLocation(Location location);
+        Task<MelissaResponse> GetMelissaResponse(Location location);
     }
 }

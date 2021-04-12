@@ -16,6 +16,7 @@ namespace FieldServiceOrganizer.Server.Pages
         private readonly Location newLocation = new();
         private EditContext editContext;
         private ICosmosDbService _cosmosDbService;
+        //private IMelissaApiService _melissaApiService;
 
         protected override async Task OnInitializedAsync()
         {

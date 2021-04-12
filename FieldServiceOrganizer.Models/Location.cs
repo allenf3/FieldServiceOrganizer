@@ -52,5 +52,11 @@ namespace FieldServiceOrganizer.Models
 
         [JsonProperty(PropertyName = "userId")]
         public string UserId { get; init; }
+
+        [JsonProperty(PropertyName = "latitude")]
+        public string Latitude { get; init; }
+
+        [JsonProperty(PropertyName = "longitude")]
+        public string Longitude { get; init; }
     }
 }

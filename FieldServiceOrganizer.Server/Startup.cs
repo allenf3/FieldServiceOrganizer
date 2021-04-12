@@ -50,6 +50,7 @@ namespace FieldServiceOrganizer.Server
             services.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(Configuration.GetSection("CosmosDb"))
                                                     .GetAwaiter()
                                                     .GetResult());
+            services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
