@@ -21,10 +21,10 @@ namespace FieldServiceOrganizer.Server.Services
             _clientFactory = clientFactory;
         }
 
-        public async Task<MelissaResponse> GetMelissaResponse(Location location)
+        public async Task<MelissaResponse> GetMelissaNormalizedLocation(Location location)
         {
             string melissaUrl = CreateMelissaUrl(location);
-            MelissaResponse normalizedLocation;
+            MelissaResponse melissaResponse;
             var request = new HttpRequestMessage(HttpMethod.Get, melissaUrl);
             request.Headers.Add("Accept", "application/json");
 
@@ -35,8 +35,8 @@ namespace FieldServiceOrganizer.Server.Services
             if (response.IsSuccessStatusCode)
             {
                 using var responseStream = await response.Content.ReadAsStreamAsync();
-                normalizedLocation = await JsonSerializer.DeserializeAsync<MelissaResponse>(responseStream);
-                return normalizedLocation;
+                melissaResponse = await JsonSerializer.DeserializeAsync<MelissaResponse>(responseStream);
+                return melissaResponse;
             }
             else
             {

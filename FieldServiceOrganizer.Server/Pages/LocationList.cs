@@ -31,8 +31,8 @@ namespace FieldServiceOrganizer.Server.Pages
             bool isValid = editContext.Validate();
             if (isValid)
             {
-                var response = _melissaApiService.GetMelissaResponse(newLocation);
-                var melissaNormalizedAddress = response.GetAwaiter().GetResult().Records[0];
+                var response = await _melissaApiService.GetMelissaNormalizedLocation(newLocation);
+                var melissaNormalizedAddress = response.Records[0];
                 newLocation.NormalizeLocation(melissaNormalizedAddress);
                 await _cosmosDbService.AddAsync(newLocation);
                 Locations = (await LoadLocations()).ToList();
