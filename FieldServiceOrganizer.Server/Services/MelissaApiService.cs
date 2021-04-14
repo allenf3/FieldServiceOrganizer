@@ -1,4 +1,5 @@
 ﻿using FieldServiceOrganizer.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,13 +46,19 @@ namespace FieldServiceOrganizer.Server.Services
 
         }
 
-
         private string CreateMelissaUrl(Location location)
         {
+            
             StringBuilder baseUrl = new StringBuilder();
             baseUrl.Append("https://address.melissadata.net/v3/WEB/GlobalAddress/DoGlobalAddress");
             baseUrl.Append($"?t={location.Id}");
-            baseUrl.Append($"");
+            baseUrl.Append($"&id={Environment.GetEnvironmentVariable("MELISSA_KEY_WITH_CREDITS")}");
+            baseUrl.Append($"&a1={location.FullAddress}");
+            baseUrl.Append($"&loc={location.City}");
+            baseUrl.Append($"&admarea={location.State}");
+            baseUrl.Append($"&postal={location.Zip}");
+            baseUrl.Append($"&ctry=USA");
+
 
             return baseUrl.ToString();
         }

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace FieldServiceOrganizer.Server
@@ -50,6 +51,7 @@ namespace FieldServiceOrganizer.Server
             services.AddSingleton<ICosmosDbService>(InitializeCosmosClientInstanceAsync(Configuration.GetSection("CosmosDb"))
                                                     .GetAwaiter()
                                                     .GetResult());
+            services.AddScoped<IMelissaApiService, MelissaApiService>();
             services.AddHttpClient();
         }
 

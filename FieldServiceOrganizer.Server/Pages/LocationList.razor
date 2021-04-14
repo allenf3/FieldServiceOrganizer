@@ -3,11 +3,43 @@
 
 @using FieldServiceOrganizer.Server.Services
 
-@inject ICosmosDbService CosmosDbService 
+@inject ICosmosDbService CosmosDbService
+@inject IMelissaApiService MelissaApiService
 
 <h3>LocationList</h3>
 
-<CheckBoxTable />
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Location</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var location in Locations)
+        {
+            <tr>
+                <td><input type="checkbox" /></td>
+                <td>@location.OccupantName</td>
+                <td>@location.FullAddress</td>
+                <td>@location.City</td>
+                <td>@location.State</td>
+                <td>@location.Zip</td>
+                <td>
+                    <button class="btn btn-danger"
+                            @onclick="@(async () => await DeleteLocation(location))">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
 <EditForm Model="@newLocation" OnValidSubmit="@AddLocation">
     <DataAnnotationsValidator />

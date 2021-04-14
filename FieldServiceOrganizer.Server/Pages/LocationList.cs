@@ -16,11 +16,12 @@ namespace FieldServiceOrganizer.Server.Pages
         private readonly Location newLocation = new();
         private EditContext editContext;
         private ICosmosDbService _cosmosDbService;
-        //private IMelissaApiService _melissaApiService;
+        private IMelissaApiService _melissaApiService;
 
         protected override async Task OnInitializedAsync()
         {
             _cosmosDbService = CosmosDbService;
+            _melissaApiService = MelissaApiService;
             await LoadLocations();
         }
 
@@ -30,6 +31,7 @@ namespace FieldServiceOrganizer.Server.Pages
             bool isValid = editContext.Validate();
             if (isValid)
             {
+                var response = _melissaApiService.GetMelissaResponse(newLocation);
                 await _cosmosDbService.AddAsync(newLocation);
                 Locations = (await LoadLocations()).ToList();
 
