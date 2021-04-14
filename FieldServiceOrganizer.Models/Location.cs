@@ -54,9 +54,24 @@ namespace FieldServiceOrganizer.Models
         public string UserId { get; init; }
 
         [JsonProperty(PropertyName = "latitude")]
-        public string Latitude { get; init; }
+        public string Latitude { get; set; }
 
         [JsonProperty(PropertyName = "longitude")]
-        public string Longitude { get; init; }
+        public string Longitude { get; set; }
+
+
+        public void NormalizeLocation(MelissaNormalizedLocation normalizedLocation)
+        {
+            StreetNumber = normalizedLocation.PremisesNumber;
+            Direction = normalizedLocation.ThoroughfarePreDirection;
+            Street = normalizedLocation.ThoroughfareName;
+            Unit = normalizedLocation.SubPremisesNumber;
+            FullAddress = normalizedLocation.AddressLine1;
+            City = normalizedLocation.Locality;
+            State = normalizedLocation.AdministrativeArea;
+            Zip = normalizedLocation.PostalCode;
+            Latitude = normalizedLocation.Latitude;
+            Longitude = normalizedLocation.Longitude;
+        }
     }
 }

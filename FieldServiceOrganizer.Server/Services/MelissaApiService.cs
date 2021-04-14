@@ -49,7 +49,7 @@ namespace FieldServiceOrganizer.Server.Services
         private string CreateMelissaUrl(Location location)
         {
             
-            StringBuilder baseUrl = new StringBuilder();
+            StringBuilder baseUrl = new();
             baseUrl.Append("https://address.melissadata.net/v3/WEB/GlobalAddress/DoGlobalAddress");
             baseUrl.Append($"?t={location.Id}");
             baseUrl.Append($"&id={Environment.GetEnvironmentVariable("MELISSA_KEY_WITH_CREDITS")}");

@@ -32,6 +32,8 @@ namespace FieldServiceOrganizer.Server.Pages
             if (isValid)
             {
                 var response = _melissaApiService.GetMelissaResponse(newLocation);
+                var melissaNormalizedAddress = response.GetAwaiter().GetResult().Records[0];
+                newLocation.NormalizeLocation(melissaNormalizedAddress);
                 await _cosmosDbService.AddAsync(newLocation);
                 Locations = (await LoadLocations()).ToList();
 
@@ -64,6 +66,8 @@ namespace FieldServiceOrganizer.Server.Pages
             await _cosmosDbService.DeleteAsync(location);
             Locations = (await LoadLocations()).ToList();
         }
+
+
         
     }
 }
