@@ -59,7 +59,6 @@ namespace FieldServiceOrganizer.Server.Services
             baseUrl.Append($"&postal={location.Zip}");
             baseUrl.Append($"&ctry=USA");
 
-
             return baseUrl.ToString();
         }
     }
