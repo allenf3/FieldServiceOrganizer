@@ -59,6 +59,19 @@ namespace FieldServiceOrganizer.Models
         [JsonProperty(PropertyName = "longitude")]
         public string Longitude { get; set; }
 
+        public override bool Equals(object obj)
+        {
+            return obj is Location location &&
+                   FullAddress == location.FullAddress &&
+                   City == location.City &&
+                   State == location.State &&
+                   Zip == location.Zip;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(FullAddress, City, State, Zip);
+        }
 
         public void NormalizeLocation(MelissaNormalizedLocation normalizedLocation)
         {
