@@ -41,40 +41,54 @@
     </tbody>
 </table>
 
+<hr />
+<h5 class="text-warning">Add Location</h5>
 <EditForm Model="@newLocation" OnValidSubmit="@AddLocation">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
+        <DataAnnotationsValidator />
+        <ValidationSummary />
 
-    <p>
-        <label>
-            Occupant Name:
-            <InputText @bind-Value="newLocation.OccupantName" />
-        </label>
-    </p>
-    <p>
-        <label>
-            Address:
-            <InputText @bind-Value="newLocation.FullAddress" />
-        </label>
-    </p>
-    <p>
-        <label>
-            City:
-            <InputText @bind-Value="newLocation.City" />
-        </label>
-    </p>
-    <p>
-        <label>
-            State:
-            <InputText @bind-Value="newLocation.State" />
-        </label>
-    </p>
-    <p>
-        <label>
-            Zip:
-            <InputText @bind-Value="newLocation.Zip" />
-        </label>
-    </p>
+        <div class="container col-lg-12">
 
-    <button class="btn btn-primary" type="submit">Submit</button>
+                <div class="row no-gutters">
+                    <div class="col-lg-2 text-right">
+                        <label>Occupant Name:</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <InputText @bind-Value="newLocation.OccupantName" />
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-lg-2 text-right">
+                        <label>Address:</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <InputText @bind-Value="newLocation.FullAddress" />
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-lg-2 text-right">
+                        <label>City:</label>
+                    </div>
+                    <div>
+                        <InputText @bind-Value="newLocation.City" />
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-lg-2 text-right">
+                        <label>State:</label>
+                    </div>
+                    <div>
+                        <InputText @bind-Value="newLocation.State" />
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-lg-2 text-right">
+                        <label>Zip:</label>
+                    </div>
+                    <div>
+                        <InputText @bind-Value="newLocation.Zip" />
+                    </div>
+                </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
 </EditForm>

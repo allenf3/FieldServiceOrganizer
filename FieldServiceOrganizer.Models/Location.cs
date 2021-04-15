@@ -73,5 +73,7 @@ namespace FieldServiceOrganizer.Models
             Latitude = normalizedLocation.Latitude;
             Longitude = normalizedLocation.Longitude;
         }
+
+
     }
 }
