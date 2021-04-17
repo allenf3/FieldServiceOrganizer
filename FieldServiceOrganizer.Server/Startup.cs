@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Syncfusion.Blazor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,11 +54,14 @@ namespace FieldServiceOrganizer.Server
                                                     .GetResult());
             services.AddScoped<IMelissaApiService, MelissaApiService>();
             services.AddHttpClient();
+            services.AddSyncfusionBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            string sfLicense = Environment.GetEnvironmentVariable("SYNCFUSION_LICENSE");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(sfLicense);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

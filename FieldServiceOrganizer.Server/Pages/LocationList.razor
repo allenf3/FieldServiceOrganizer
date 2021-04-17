@@ -2,11 +2,80 @@
 @page "/Locations"
 
 @using FieldServiceOrganizer.Server.Services
+@using FieldServiceOrganizer.Models
 
 @inject ICosmosDbService CosmosDbService
 @inject IMelissaApiService MelissaApiService
 
 <h3>LocationList</h3>
+
+<Syncfusion.Blazor.Grids.SfGrid DataSource="@Locations"
+                                AllowPaging="true"
+                                AllowSorting="true"
+                                AllowFiltering="true"
+                                Toolbar="@(new List<string>() {"Add"})">
+
+    <GridEvents CommandClicked="OnCommandClicked" TValue="Location"></GridEvents>
+    
+    <GridPageSettings PageSize="8"></GridPageSettings>
+    
+    <GridEditSettings AllowAdding="true"
+                      Mode="EditMode.Dialog"
+                      AllowDeleting="true"
+                      ShowDeleteConfirmDialog="true">
+
+    </GridEditSettings>
+    <GridColumns>
+        <GridColumn Field="@nameof(Location.Id)"
+                    HeaderText="Location ID"
+                    IsPrimaryKey="true"
+                    Width="180">
+        </GridColumn>
+
+        <GridColumn Field="@nameof(Location.OccupantName)"
+                    HeaderText="Location"
+                    Width="120"
+                    ValidationRules="@(new ValidationRules { Required = true })">
+        </GridColumn>
+
+        <GridColumn Field="@nameof(Location.FullAddress)"
+                    HeaderText="Address"
+                    Width="140"
+                    ValidationRules="@(new ValidationRules { Required = true })">
+        </GridColumn>
+
+        <GridColumn Field="@nameof(Location.City)"
+                    HeaderText="City"
+                    Width="80"
+                    ValidationRules="@(new ValidationRules { Required = true })">
+        </GridColumn>
+
+        <GridColumn Field="@nameof(Location.State)"
+                    HeaderText="State"
+                    Width="40"
+                    ValidationRules="@(new ValidationRules { Required = true })">
+        </GridColumn>
+
+        <GridColumn Field="@nameof(Location.Zip)"
+                    HeaderText="Zip"
+                    Width="60">
+        </GridColumn>
+
+        <GridColumn HeaderText="Delete" Width="34">
+            <GridCommandColumns>
+                <GridCommandColumn Type="CommandButtonType.Delete"
+                                   ButtonOption="@(new CommandButtonOptions()
+                                                   {
+                        IconCss="e-icons e-delete", CssClass="e-flat"
+                                                   })">
+                </GridCommandColumn>
+            </GridCommandColumns>
+        </GridColumn>
+
+
+    </GridColumns>
+</Syncfusion.Blazor.Grids.SfGrid>
+
 
 <table class="table">
     <thead>
@@ -42,53 +111,61 @@
 </table>
 
 <hr />
-<h5 class="text-warning">Add Location</h5>
+
 <EditForm Model="@newLocation" OnValidSubmit="@AddLocation">
-        <DataAnnotationsValidator />
-        <ValidationSummary />
-
-        <div class="container col-lg-12">
-
-                <div class="row no-gutters">
-                    <div class="col-lg-2 text-right">
-                        <label>Occupant Name:</label>
-                    </div>
-                    <div class="col-lg-4">
-                        <InputText @bind-Value="newLocation.OccupantName" />
-                    </div>
-                </div>
-                <div class="row no-gutters">
-                    <div class="col-lg-2 text-right">
-                        <label>Address:</label>
-                    </div>
-                    <div class="col-lg-4">
-                        <InputText @bind-Value="newLocation.FullAddress" />
-                    </div>
-                </div>
-                <div class="row no-gutters">
-                    <div class="col-lg-2 text-right">
-                        <label>City:</label>
-                    </div>
-                    <div>
-                        <InputText @bind-Value="newLocation.City" />
-                    </div>
-                </div>
-                <div class="row no-gutters">
-                    <div class="col-lg-2 text-right">
-                        <label>State:</label>
-                    </div>
-                    <div>
-                        <InputText @bind-Value="newLocation.State" />
-                    </div>
-                </div>
-                <div class="row no-gutters">
-                    <div class="col-lg-2 text-right">
-                        <label>Zip:</label>
-                    </div>
-                    <div>
-                        <InputText @bind-Value="newLocation.Zip" />
-                    </div>
-                </div>
-            <button class="btn btn-primary" type="submit">Submit</button>
+<DataAnnotationsValidator />
+<ValidationSummary />
+<div class="container container-fluid no-gutters">
+    <div class="col-lg-6">
+        <div class="row no-gutters">
+            <div class="col-lg-6 text-right">
+                <h5 class="text-warning">Add A Location</h5>
+            </div>
         </div>
+        <div class="row no-gutters">
+            <div class="col-lg-3 text-right p-1">
+                <label>Occupant Name:</label>
+            </div>
+            <div class="col-lg-3">
+                <InputText @bind-Value="newLocation.OccupantName" />
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-lg-3 text-right p-1">
+                <label>Address:</label>
+            </div>
+            <div class="col-lg-3">
+                <InputText @bind-Value="newLocation.FullAddress" />
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-lg-3 text-right p-1">
+                <label>City:</label>
+            </div>
+            <div class="col-lg-3">
+                <InputText @bind-Value="newLocation.City" />
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-lg-3 text-right p-1">
+                <label>State:</label>
+            </div>
+            <div class="col-lg-3">
+                <InputText @bind-Value="newLocation.State" />
+            </div>
+        </div>
+        <div class="row no-gutters">
+            <div class="col-lg-3 text-right p-1">
+                <label>Zip:</label>
+            </div>
+            <div class="col-lg-3">
+                <InputText @bind-Value="newLocation.Zip" />
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+    <div class="col-lg-6"></div>
+</div>
 </EditForm>
+
+

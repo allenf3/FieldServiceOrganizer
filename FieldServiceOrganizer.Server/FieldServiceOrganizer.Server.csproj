@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Cosmos" Version="4.0.0-preview" />
+    <PackageReference Include="Syncfusion.Blazor.Grid" Version="19.1.0.56" />
   </ItemGroup>
 
   <ItemGroup>
