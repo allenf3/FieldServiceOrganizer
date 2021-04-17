@@ -27,19 +27,6 @@ namespace FieldServiceOrganizer.Server.Pages
             await LoadLocations();
         }
 
-        private async Task AddLocation()
-        {
-            editContext = new EditContext(newLocation);
-            bool isValid = editContext.Validate();
-            if (isValid)
-            {
-                var response = await _melissaApiService.GetMelissaNormalizedLocation(newLocation);
-                var melissaNormalizedAddress = response.Records[0];
-                newLocation.NormalizeLocation(melissaNormalizedAddress);
-                await _cosmosDbService.AddAsync(newLocation);
-            }
-        }
-
         private async Task<IEnumerable<Location>> LoadLocations()
         {
             Locations = new List<Location>();
@@ -49,12 +36,6 @@ namespace FieldServiceOrganizer.Server.Pages
                 Locations.Add(item);
             }
             return Locations;
-        }
-
-        private async Task DeleteLocation(Location location)
-        {
-            await _cosmosDbService.DeleteAsync(location);
-            Locations = (await LoadLocations()).ToList();
         }
 
         private async Task OnCommandClicked(CommandClickEventArgs<Location> args)
