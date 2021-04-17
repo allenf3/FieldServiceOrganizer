@@ -73,7 +73,6 @@ namespace FieldServiceOrganizer.Server.Pages
             if (args.CommandColumn.Type == CommandButtonType.Delete)
             {
                 await _cosmosDbService.DeleteAsync(args.RowData);
-                Locations = (await LoadLocations()).ToList();
             }
         }
 
