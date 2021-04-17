@@ -13,7 +13,7 @@ namespace FieldServiceOrganizer.Models
         {
             Type = GetType().Name;
             Id = Guid.NewGuid();
-            UserId = Guid.NewGuid().ToString();
+            UserId = new Guid("a8363ca0171247e28540a75abd811c3f").ToString();
         }
 
         [JsonProperty(PropertyName = "type")]
