@@ -15,7 +15,7 @@
                                 AllowFiltering="true"
                                 Toolbar="@(new List<string>() {"Add"})">
 
-    <GridEvents CommandClicked="OnCommandClicked" TValue="Location"></GridEvents>
+    <GridEvents CommandClicked="OnCommandClicked" TValue="Location" OnActionBegin="OnActionBeginHandler"></GridEvents>
     
     <GridPageSettings PageSize="8"></GridPageSettings>
     
@@ -23,8 +23,8 @@
                       Mode="EditMode.Dialog"
                       AllowDeleting="true"
                       ShowDeleteConfirmDialog="true">
-
     </GridEditSettings>
+
     <GridColumns>
         <GridColumn Field="@nameof(Location.Id)"
                     HeaderText="Location ID"

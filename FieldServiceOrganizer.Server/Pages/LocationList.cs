@@ -76,6 +76,22 @@ namespace FieldServiceOrganizer.Server.Pages
                 Locations = (await LoadLocations()).ToList();
             }
         }
-        
+
+        private async Task OnActionBeginHandler(ActionEventArgs<Location> args)
+        {
+            if (args.RequestType == Syncfusion.Blazor.Grids.Action.Save && args.Action == "Add")
+            {
+                editContext = new EditContext(args.Data);
+                bool isValid = editContext.Validate();
+                if (isValid)
+                {
+                    var response = await _melissaApiService.GetMelissaNormalizedLocation(args.Data);
+                    var melissaNormalizedAddress = response.Records[0];
+                    args.RowData.NormalizeLocation(melissaNormalizedAddress);
+                    await _cosmosDbService.AddAsync(args.Data);
+                    Locations = (await LoadLocations()).ToList();
+                }
+            }
+        }
     }
 }
