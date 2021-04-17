@@ -37,19 +37,7 @@ namespace FieldServiceOrganizer.Server.Pages
                 var melissaNormalizedAddress = response.Records[0];
                 newLocation.NormalizeLocation(melissaNormalizedAddress);
                 await _cosmosDbService.AddAsync(newLocation);
-                Locations = (await LoadLocations()).ToList();
-
-                ClearFormFields();
             }
-        }
-
-        private void ClearFormFields()
-        {
-            newLocation.OccupantName = string.Empty;
-            newLocation.FullAddress = string.Empty;
-            newLocation.City = string.Empty;
-            newLocation.State = string.Empty;
-            newLocation.Zip = string.Empty;
         }
 
         private async Task<IEnumerable<Location>> LoadLocations()
@@ -89,7 +77,6 @@ namespace FieldServiceOrganizer.Server.Pages
                     var melissaNormalizedAddress = response.Records[0];
                     args.RowData.NormalizeLocation(melissaNormalizedAddress);
                     await _cosmosDbService.AddAsync(args.Data);
-                    Locations = (await LoadLocations()).ToList();
                 }
             }
         }
