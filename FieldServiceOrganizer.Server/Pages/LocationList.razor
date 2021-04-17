@@ -17,6 +17,8 @@
 
     <GridEvents CommandClicked="OnCommandClicked" TValue="Location" OnActionBegin="OnActionBeginHandler"></GridEvents>
     
+    <GridSelectionSettings Type="SelectionType.Multiple" PersistSelection="true"></GridSelectionSettings>
+
     <GridPageSettings PageSize="8"></GridPageSettings>
     
     <GridEditSettings AllowAdding="true"
@@ -26,6 +28,9 @@
     </GridEditSettings>
 
     <GridColumns>
+
+        <GridColumn Type="ColumnType.CheckBox" Width="25"></GridColumn>
+
         <GridColumn Field="@nameof(Location.Id)"
                     HeaderText="Location ID"
                     IsPrimaryKey="true"

@@ -14,6 +14,7 @@ namespace FieldServiceOrganizer.Server.Pages
     public partial class LocationList : ComponentBase
     {
         public List<Location> Locations { get; set; }
+        public List<Location> SelectedLocations { get; set; }
         private readonly Location newLocation = new();
         private EditContext editContext;
         private ICosmosDbService _cosmosDbService;
