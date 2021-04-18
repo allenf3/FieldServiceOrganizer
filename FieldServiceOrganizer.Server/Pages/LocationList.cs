@@ -17,11 +17,7 @@ namespace FieldServiceOrganizer.Server.Pages
         public List<Location> Locations { get; set; }
         public ObservableCollection<Location> SelectedLocations { get; set; }
 
-        SfGrid<Location> Grid;
-        private List<double> SelectedRowIndexes { get; set; }
-        private double[] TotalValue { get; set; }
         private int TotalSelected = 0;
-        private string SelectedValue;
         private EditContext editContext;
         private ICosmosDbService _cosmosDbService;
         private IMelissaApiService _melissaApiService;
