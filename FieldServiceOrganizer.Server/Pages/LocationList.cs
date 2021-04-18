@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using Syncfusion.Blazor.Grids;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,8 +15,13 @@ namespace FieldServiceOrganizer.Server.Pages
     public partial class LocationList : ComponentBase
     {
         public List<Location> Locations { get; set; }
-        public List<Location> SelectedLocations { get; set; }
-        private readonly Location newLocation = new();
+        public ObservableCollection<Location> SelectedLocations { get; set; }
+
+        SfGrid<Location> Grid;
+        private List<double> SelectedRowIndexes { get; set; }
+        private double[] TotalValue { get; set; }
+        private int TotalSelected = 0;
+        private string SelectedValue;
         private EditContext editContext;
         private ICosmosDbService _cosmosDbService;
         private IMelissaApiService _melissaApiService;
@@ -30,6 +36,7 @@ namespace FieldServiceOrganizer.Server.Pages
         private async Task<IEnumerable<Location>> LoadLocations()
         {
             Locations = new List<Location>();
+            SelectedLocations = new ObservableCollection<Location>();
             var locations = await _cosmosDbService.GetAllAsync($"select * from c");
             foreach (var item in locations)
             {
@@ -60,6 +67,27 @@ namespace FieldServiceOrganizer.Server.Pages
                     await _cosmosDbService.AddAsync(args.Data);
                 }
             }
+        }
+
+        private async Task GetSelectedRecords(RowSelectEventArgs<Location> args)
+        {
+            TotalSelected++;
+            SelectedLocations.Add(args.Data);
+            SelectedRowIndexes = await Grid.GetSelectedRowIndexes();
+            TotalValue = SelectedRowIndexes.ToArray();
+            SelectedValue = "";
+            foreach (var data in TotalValue)
+            {
+                SelectedValue = SelectedValue + " " + data;
+            }
+            StateHasChanged();
+        }
+
+        private void RowDeselectHandler(RowDeselectEventArgs<Location> args)
+        {
+            TotalSelected--;
+            SelectedLocations.Remove(args.Data);
+            StateHasChanged();
         }
     }
 }

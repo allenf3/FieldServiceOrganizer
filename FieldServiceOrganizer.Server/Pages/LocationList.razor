@@ -9,75 +9,124 @@
 
 <h3>LocationList</h3>
 
-<Syncfusion.Blazor.Grids.SfGrid DataSource="@Locations"
-                                AllowPaging="true"
-                                AllowSorting="true"
-                                AllowFiltering="true"
-                                Toolbar="@(new List<string>() {"Add"})">
+@if (TotalSelected < 5)
+{
+    <span class="text-success">@TotalSelected of 5 selected</span>
+}
+else if (TotalSelected == 5)
+{
+    <span class="text-danger">@TotalSelected of 5 selected</span>
+}
+else
+{
+    <span class="text-danger">Too many locations selected - maximum of 5</span>
+}
 
-    <GridEvents CommandClicked="OnCommandClicked" TValue="Location" OnActionBegin="OnActionBeginHandler"></GridEvents>
-    
-    <GridSelectionSettings Type="SelectionType.Multiple" PersistSelection="true"></GridSelectionSettings>
+<div class="container col-lg-12">
+    <div class="row">
+        <div class="col-lg-9">
+            <Syncfusion.Blazor.Grids.SfGrid @ref="@Grid"
+                                            DataSource="@Locations"
+                                            AllowPaging="true"
+                                            AllowSorting="true"
+                                            AllowFiltering="true"
+                                            Toolbar="@(new List<string>() {"Add"})">
 
-    <GridPageSettings PageSize="8"></GridPageSettings>
-    
-    <GridEditSettings AllowAdding="true"
-                      Mode="EditMode.Dialog"
-                      AllowDeleting="true"
-                      ShowDeleteConfirmDialog="true">
-    </GridEditSettings>
+                <GridEvents TValue="Location"
+                            CommandClicked="OnCommandClicked"
+                            OnActionBegin="OnActionBeginHandler"
+                            RowSelected="GetSelectedRecords"
+                            RowDeselected="RowDeselectHandler">
+                </GridEvents>
 
-    <GridColumns>
+                <GridSelectionSettings Type="SelectionType.Multiple"
+                                       PersistSelection="true"
+                                       EnableToggle="true">
+                </GridSelectionSettings>
 
-        <GridColumn Type="ColumnType.CheckBox" Width="25"></GridColumn>
+                <GridPageSettings PageSize="10"></GridPageSettings>
 
-        <GridColumn Field="@nameof(Location.Id)"
-                    HeaderText="Location ID"
-                    IsPrimaryKey="true"
-                    Width="180">
-        </GridColumn>
+                <GridEditSettings AllowAdding="true"
+                                  Mode="EditMode.Dialog"
+                                  AllowDeleting="true"
+                                  ShowDeleteConfirmDialog="true">
+                </GridEditSettings>
 
-        <GridColumn Field="@nameof(Location.OccupantName)"
-                    HeaderText="Location"
-                    Width="120"
-                    ValidationRules="@(new ValidationRules { Required = true })">
-        </GridColumn>
+                <GridColumns>
 
-        <GridColumn Field="@nameof(Location.FullAddress)"
-                    HeaderText="Address"
-                    Width="140"
-                    ValidationRules="@(new ValidationRules { Required = true })">
-        </GridColumn>
+                    <GridColumn Type="ColumnType.CheckBox" Width="25"></GridColumn>
 
-        <GridColumn Field="@nameof(Location.City)"
-                    HeaderText="City"
-                    Width="80"
-                    ValidationRules="@(new ValidationRules { Required = true })">
-        </GridColumn>
+                    <GridColumn Field="@nameof(Location.Id)"
+                                HeaderText="Location ID"
+                                IsPrimaryKey="true"
+                                Width="180"
+                                Visible="false">
+                    </GridColumn>
 
-        <GridColumn Field="@nameof(Location.State)"
-                    HeaderText="State"
-                    Width="40"
-                    ValidationRules="@(new ValidationRules { Required = true })">
-        </GridColumn>
+                    <GridColumn Field="@nameof(Location.OccupantName)"
+                                HeaderText="Location"
+                                Width="120"
+                                ValidationRules="@(new ValidationRules { Required = true })">
+                    </GridColumn>
 
-        <GridColumn Field="@nameof(Location.Zip)"
-                    HeaderText="Zip"
-                    Width="60">
-        </GridColumn>
+                    <GridColumn Field="@nameof(Location.FullAddress)"
+                                HeaderText="Address"
+                                Width="140"
+                                ValidationRules="@(new ValidationRules { Required = true })">
+                    </GridColumn>
 
-        <GridColumn HeaderText="Delete" Width="38">
-            <GridCommandColumns>
-                <GridCommandColumn Type="CommandButtonType.Delete"
-                                   ButtonOption="@(new CommandButtonOptions()
+                    <GridColumn Field="@nameof(Location.City)"
+                                HeaderText="City"
+                                Width="80"
+                                ValidationRules="@(new ValidationRules { Required = true })">
+                    </GridColumn>
+
+                    <GridColumn Field="@nameof(Location.State)"
+                                HeaderText="State"
+                                Width="40"
+                                ValidationRules="@(new ValidationRules { Required = true })">
+                    </GridColumn>
+
+                    <GridColumn Field="@nameof(Location.Zip)"
+                                HeaderText="Zip"
+                                Width="60">
+                    </GridColumn>
+
+                    <GridColumn HeaderText="Delete" Width="38">
+                        <GridCommandColumns>
+                            <GridCommandColumn Type="CommandButtonType.Delete"
+                                               ButtonOption="@(new CommandButtonOptions()
                                                    {
-                        IconCss="e-icons e-delete", CssClass="e-flat"
+                                                       IconCss="e-icons e-delete", CssClass="e-flat"
                                                    })">
-                </GridCommandColumn>
-            </GridCommandColumns>
-        </GridColumn>
+                            </GridCommandColumn>
+                        </GridCommandColumns>
+                    </GridColumn>
 
 
-    </GridColumns>
-</Syncfusion.Blazor.Grids.SfGrid>
+                </GridColumns>
+            </Syncfusion.Blazor.Grids.SfGrid>
+            </div>
+
+            <div class="col-lg-3 badge badge-warning">
+                <h5>Selected Locations</h5>
+                <Syncfusion.Blazor.Grids.SfGrid DataSource="@SelectedLocations">
+                    <GridColumns>
+                        <GridColumn Field="@nameof(Location.OccupantName)" Width="120">
+
+                        </GridColumn>
+                    </GridColumns>
+                </Syncfusion.Blazor.Grids.SfGrid>
+                @if (TotalSelected > 2 && TotalSelected < 6)
+                {
+                    <div class="spinner-grow">
+                        <button class="btn btn-dark">Find Best Route</button>
+                    </div>
+                }
+            </div>
+    </div>
+</div>
+
+
+
 
