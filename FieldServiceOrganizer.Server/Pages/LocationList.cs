@@ -69,17 +69,10 @@ namespace FieldServiceOrganizer.Server.Pages
             }
         }
 
-        private async Task GetSelectedRecords(RowSelectEventArgs<Location> args)
+        private void GetSelectedRecords(RowSelectEventArgs<Location> args)
         {
             TotalSelected++;
             SelectedLocations.Add(args.Data);
-            SelectedRowIndexes = await Grid.GetSelectedRowIndexes();
-            TotalValue = SelectedRowIndexes.ToArray();
-            SelectedValue = "";
-            foreach (var data in TotalValue)
-            {
-                SelectedValue = SelectedValue + " " + data;
-            }
             StateHasChanged();
         }
 
