@@ -78,5 +78,10 @@ namespace FieldServiceOrganizer.Server.Pages
             SelectedLocations.Remove(args.Data);
             StateHasChanged();
         }
+
+        private void FindRouteHandler()
+        {
+
+        }
     }
 }
