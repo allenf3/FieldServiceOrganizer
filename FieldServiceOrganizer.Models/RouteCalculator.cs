@@ -22,30 +22,10 @@ namespace FieldServiceOrganizer.Models
             // Start and end of all routes
             HomeBase = new Location() { City = "Collinsville", State = "Illinois" };
 
-            // Populate matrix with time and distance info to and from all locations
-            // _adjacencyMatrix = new (int TimeInSeconds, int DistanceInFeet)[_serviceStops.Count, _serviceStops.Count];
-
             foreach(var location in _serviceStops)
             {
                 DistanceNodes.Add(GetTimeInSecondsAndDistanceInFeet(HomeBase, location));
             }
-
-
-            // Populate upper half of matrix only (undirected graph)
-            //for (int i = 0; i < _serviceStops.Count; i++)
-            //{
-            //    for (int j = 0; j < _serviceStops.Count; j++)
-            //    {
-            //        if (i < j)
-            //        {
-            //            _adjacencyMatrix[i, j] = GetTimeInSecondsAndDistanceInFeet(_serviceStops[i], _serviceStops[j]);
-            //        }
-            //        else
-            //        {
-            //            _adjacencyMatrix[i, j] = (0, 0);
-            //        }
-            //    }
-            //}
 
             FindOptimalRouteBruteForce();
         }
