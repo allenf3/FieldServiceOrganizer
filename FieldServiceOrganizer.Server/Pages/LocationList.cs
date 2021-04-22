@@ -16,6 +16,10 @@ namespace FieldServiceOrganizer.Server.Pages
     {
         public List<Location> Locations { get; set; }
         public ObservableCollection<Location> SelectedLocations { get; set; }
+        SfGrid<Location> Grid { get; set; }
+        private bool RouteCalculated { get; set; }
+        private int MinTimeInSeconds { get; set; }
+        private int DistanceOfMinTimeRoute { get; set; }
 
         private int TotalSelected = 0;
         private EditContext editContext;
@@ -81,7 +85,19 @@ namespace FieldServiceOrganizer.Server.Pages
 
         private void FindRouteHandler()
         {
+            RouteCalculator routeCalculator = new(SelectedLocations.ToList());
+            MinTimeInSeconds = routeCalculator.MinTimeInSeconds;
+            DistanceOfMinTimeRoute = routeCalculator.DistanceInFeetOfMinTimeRoute;
+            RouteCalculated = true;
 
+        }
+
+        private async Task ClearRoute()
+        {
+            SelectedLocations.Clear();
+            await Grid.ClearSelection();
+            TotalSelected = 0;
+            RouteCalculated = false;
         }
     }
 }

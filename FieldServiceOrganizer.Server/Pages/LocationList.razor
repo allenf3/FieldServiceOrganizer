@@ -25,7 +25,8 @@ else
 <div class="container col-lg-12">
     <div class="row">
         <div class="col-lg-9">
-            <Syncfusion.Blazor.Grids.SfGrid DataSource="@Locations"
+            <Syncfusion.Blazor.Grids.SfGrid @ref="Grid"
+                                            DataSource="@Locations"
                                             AllowPaging="true"
                                             AllowSorting="true"
                                             AllowFiltering="true"
@@ -116,12 +117,22 @@ else
                         </GridColumn>
                     </GridColumns>
                 </Syncfusion.Blazor.Grids.SfGrid>
-                @if (TotalSelected > 2 && TotalSelected < 6)
+                @if ( TotalSelected > 2 && TotalSelected < 6 && !RouteCalculated )
                 {
                     <div class="spinner-grow">
                         <button class="btn btn-dark" @onclick="FindRouteHandler">Find Best Route</button>
                     </div>
                 }
+                @if ( RouteCalculated )
+                {
+                    <div>
+                        <p>Most efficient route:</p>
+                        <p>@(MinTimeInSeconds/60) minutes</p>
+
+                        <Syncfusion.Blazor.Buttons.SfButton content="Clear Route" @onclick="ClearRoute"></Syncfusion.Blazor.Buttons.SfButton>
+                    </div>
+                }
+
             </div>
     </div>
 </div>

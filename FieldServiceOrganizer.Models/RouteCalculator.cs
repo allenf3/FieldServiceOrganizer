@@ -10,6 +10,7 @@ namespace FieldServiceOrganizer.Models
     {
         private readonly List<Location> _serviceStops;
         // private (int TimeInSeconds, int DistanceInFeet)[,] _adjacencyMatrix { get; set; }
+        public List<Location> FastestRoute { get; private set; }
         public int MinTimeInSeconds { get; private set; }
         public int DistanceInFeetOfMinTimeRoute { get; private set; }
         public Location HomeBase { get; set; }
@@ -18,13 +19,27 @@ namespace FieldServiceOrganizer.Models
         public RouteCalculator(List<Location> serviceStops)
         {
             _serviceStops = serviceStops;
+            DistanceNodes = new();
 
             // Start and end of all routes
             HomeBase = new Location() { City = "Collinsville", State = "Illinois" };
 
+            // HomeBase to all locations
             foreach(var location in _serviceStops)
             {
                 DistanceNodes.Add(GetTimeInSecondsAndDistanceInFeet(HomeBase, location));
+            }
+
+            // Create DistanceNode for all edges
+            for (int i = 0; i < _serviceStops.Count; i++)
+            {
+                for (int j = 0; j < _serviceStops.Count; j++)
+                {
+                    if (j > i) // not same service location or value already calculated
+                    {
+                        DistanceNodes.Add(GetTimeInSecondsAndDistanceInFeet(_serviceStops[i], _serviceStops[j]));
+                    }
+                }
             }
 
             FindOptimalRouteBruteForce();
@@ -37,28 +52,28 @@ namespace FieldServiceOrganizer.Models
             DistanceInFeetOfMinTimeRoute = int.MaxValue;
             allPossibleRoutes = FindAllPossibleRoutes();
 
-            foreach (var possibleRoute in allPossibleRoutes)
+            foreach (var currentRoute in allPossibleRoutes)
             {
                 int currentTime = 0;
                 int currentDistance = 0;
 
                 // From HomeBase to first stop
-                DistanceNode nextNode = DistanceNodes.Where(node => node.From == HomeBase && node.To == possibleRoute[0]).FirstOrDefault();
+                DistanceNode nextNode = DistanceNodes.Where(node => node.From == HomeBase && node.To == currentRoute[0]).FirstOrDefault();
                 currentTime += nextNode.TimeInSeconds;
                 currentDistance += nextNode.DistanceInFeet;
 
                 // Go to each stop
-                for (int i = 1; i < possibleRoute.Count; i++)
+                for (int i = 0; i < currentRoute.Count - 1; i++)
                 {
-                    nextNode = DistanceNodes.Where(node => (node.From == possibleRoute[i] && node.To == possibleRoute[i + 1])
-                                                                     || (node.From == possibleRoute[i+1] && node.To == possibleRoute[i]))
+                    nextNode = DistanceNodes.Where(node => (node.From == currentRoute[i] && node.To == currentRoute[i + 1])
+                                                                     || (node.From == currentRoute[i+1] && node.To == currentRoute[i]))
                                                                         .FirstOrDefault();
                     currentTime += nextNode.TimeInSeconds;
                     currentDistance += nextNode.DistanceInFeet;
                 }
 
                 // From last stop back to HomeBase
-                nextNode = DistanceNodes.Where(node => node.From == HomeBase && node.To == possibleRoute[possibleRoute.Count - 1]).FirstOrDefault();
+                nextNode = DistanceNodes.Where(node => node.From == HomeBase && node.To == currentRoute[currentRoute.Count - 1]).FirstOrDefault();
                 currentTime += nextNode.TimeInSeconds;
                 currentDistance += nextNode.DistanceInFeet;
 
@@ -66,6 +81,7 @@ namespace FieldServiceOrganizer.Models
                 {
                     MinTimeInSeconds = currentTime;
                     DistanceInFeetOfMinTimeRoute = currentDistance;
+                    FastestRoute = currentRoute;
                 }
             }
         }
