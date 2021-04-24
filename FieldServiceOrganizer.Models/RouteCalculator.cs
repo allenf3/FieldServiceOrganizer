@@ -13,7 +13,7 @@ namespace FieldServiceOrganizer.Models
         public List<Location> FastestRoute { get; private set; }
         public int MinTimeInSeconds { get; private set; }
         public int DistanceInFeetOfMinTimeRoute { get; private set; }
-        public Location HomeBase { get; set; }
+        public Location HomeBase { get; private set; }
         private List<DistanceNode> DistanceNodes { get; set; }
 
         public RouteCalculator(List<Location> serviceStops)
@@ -127,6 +127,14 @@ namespace FieldServiceOrganizer.Models
                     }
                 }
             }
+        }
+
+        public DistanceNode FindRelatedDistanceNode(Location from, Location to)
+        {
+            DistanceNode dn = DistanceNodes.Where(node => (node.From == from && node.To == to) || (node.From == to && node.To == from))
+                                           .FirstOrDefault();
+
+            return dn;
         }
     }
 }
