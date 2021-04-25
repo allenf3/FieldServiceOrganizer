@@ -82,24 +82,19 @@ else
                                     <ContentTemplate>
                                         <div style="padding:12px">
                                             <div style="height:260px; width:450px;float:left">
-                                                <SfMaps>
+                                                <SfMaps Height="260px">
+                                                    <MapsZoomSettings Enable="true">
+                                                    </MapsZoomSettings>
                                                     <MapsCenterPosition Latitude="@Double.Parse(location.Latitude)"
                                                                         Longitude="@Double.Parse(location.Longitude)" />
-                                                    <MapsZoomSettings Enable="true" ZoomFactor="12" />
+                                                    <MapsZoomSettings Enable="true" ZoomFactor="15" MaxZoom="18" />
                                                     <MapsLayers>
-                                                        <MapsLayer LayerType="ShapeLayerType.OSM" TValue="string">
+                                                        <MapsLayer LayerType="ShapeLayerType.Google" TValue="string">
                                                             <MapsMarkerSettings>
-                                                                <MapsMarker Visible="true" DataSource="@Locations" TValue="Location">
+                                                                <MapsMarker Visible="true" DataSource="@Locations" Height="25" Width="25" TValue="Location">
                                                                     <ChildContent>
-                                                                        <MapsMarkerTooltipSettings Visible="true" ValuePath="Name" />
+                                                                        <MapsMarkerTooltipSettings Visible="true" ValuePath="OccupantName" />
                                                                     </ChildContent>
-                                                                    <MarkerTemplate Context="marker">
-                                                                        @{ 
-                                                                            <div style="pointer-events: none;">
-                                                                                <img class="markerTemplate" src="images/maps/ballon.png" />
-                                                                            </div>
-                                                                        }
-                                                                    </MarkerTemplate>
                                                                 </MapsMarker>
                                                             </MapsMarkerSettings>
                                                         </MapsLayer>
