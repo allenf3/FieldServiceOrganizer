@@ -24,7 +24,7 @@ else
 
 <div class="container col-lg-12">
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-8">
             <Syncfusion.Blazor.Grids.SfGrid @ref="Grid"
                                             DataSource="@Locations"
                                             AllowPaging="true"
@@ -149,7 +149,7 @@ else
             </Syncfusion.Blazor.Grids.SfGrid>
             </div>
 
-            <div class="col-lg-3 badge badge-warning">
+            <div class="col-lg-4 badge badge-warning">
                 <h5>Selected Locations</h5>
                 <Syncfusion.Blazor.Grids.SfGrid DataSource="@SelectedLocations">
                     <GridColumns>
@@ -166,12 +166,77 @@ else
                 }
                 @if ( RouteCalculated )
                 {
-                    <div>
-                        <p>Most efficient route:</p>
-                        <p>@(MinTimeInSeconds/60) minutes</p>
+            <div>
+                <p>Most efficient route:</p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Minutes</th>
+                            <th>Miles</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i <= CalculatedRoute.FastestRoute.Count; i++)
+                        {
+                            @if (i == 0)
+                            {
+                                <tr>
+                                    <td class="text-wrap">Home Base</td>
+                                    <td class="text-wrap">@CalculatedRoute.FastestRoute[0].OccupantName</td>
+                                    <td class="text-wrap">
+                                        @(CalculatedRoute.FindRelatedDistanceNode(CalculatedRoute.HomeBase, CalculatedRoute.FastestRoute[0])
+                                                             .TimeInSeconds/60) Minutes
+                                    </td>
+                                    <td class="text-wrap">
+                                        @(CalculatedRoute.FindRelatedDistanceNode(CalculatedRoute.HomeBase, CalculatedRoute.FastestRoute[0])
+                                                             .DistanceInFeet/5280) Miles
+                                    </td>
+                                </tr>
+                            }
 
-                        <Syncfusion.Blazor.Buttons.SfButton content="Clear Route" @onclick="ClearRoute"></Syncfusion.Blazor.Buttons.SfButton>
-                    </div>
+                            else if (i != CalculatedRoute.FastestRoute.Count)
+                            {
+                                <tr>
+                                    <td class="text-wrap">@CalculatedRoute.FastestRoute[i - 1].OccupantName</td>
+                                    <td class="text-wrap">@CalculatedRoute.FastestRoute[i].OccupantName</td>
+                                    <td class="text-wrap">
+                                        @(CalculatedRoute.FindRelatedDistanceNode(CalculatedRoute.FastestRoute[i], CalculatedRoute.FastestRoute[i-1])
+                                                             .TimeInSeconds/60) Minutes
+                                    </td>
+                                    <td class="text-wrap">
+                                        @(CalculatedRoute.FindRelatedDistanceNode(CalculatedRoute.FastestRoute[i], CalculatedRoute.FastestRoute[i - 1])
+                                                             .DistanceInFeet/5280) Miles
+                                    </td>
+                                </tr>
+                            }
+
+                            @if (i == CalculatedRoute.FastestRoute.Count)
+                            {
+                                <tr>
+                                    <td class="text-wrap">@CalculatedRoute.FastestRoute[i - 1].OccupantName</td>
+                                    <td class="text-wrap">Home Base</td>
+                                    <td class="text-wrap">
+                                        @(CalculatedRoute.FindRelatedDistanceNode(CalculatedRoute.HomeBase, CalculatedRoute.FastestRoute[i - 1])
+                                                                     .TimeInSeconds/60) Minutes
+                                    </td>
+                                    <td class="text-wrap">
+                                        @(CalculatedRoute.FindRelatedDistanceNode(CalculatedRoute.HomeBase, CalculatedRoute.FastestRoute[i - 1])
+                                                                     .DistanceInFeet/5280) Miles
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+
+                    </tbody>
+                </table>
+
+                <p>Total travel time: @(MinTimeInSeconds/60) minutes</p>
+
+                <Syncfusion.Blazor.Buttons.SfButton content="Clear Route" @onclick="ClearRoute"></Syncfusion.Blazor.Buttons.SfButton>
+            </div>
                 }
 
             </div>
