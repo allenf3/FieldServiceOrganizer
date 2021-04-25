@@ -82,7 +82,29 @@ else
                                     <ContentTemplate>
                                         <div style="padding:12px">
                                             <div style="height:260px; width:450px;float:left">
-                                               
+                                                <SfMaps>
+                                                    <MapsCenterPosition Latitude="@Double.Parse(location.Latitude)"
+                                                                        Longitude="@Double.Parse(location.Longitude)" />
+                                                    <MapsZoomSettings Enable="true" ZoomFactor="12" />
+                                                    <MapsLayers>
+                                                        <MapsLayer LayerType="ShapeLayerType.OSM" TValue="string">
+                                                            <MapsMarkerSettings>
+                                                                <MapsMarker Visible="true" DataSource="@Locations" TValue="Location">
+                                                                    <ChildContent>
+                                                                        <MapsMarkerTooltipSettings Visible="true" ValuePath="Name" />
+                                                                    </ChildContent>
+                                                                    <MarkerTemplate Context="marker">
+                                                                        @{ 
+                                                                            <div style="pointer-events: none;">
+                                                                                <img class="markerTemplate" src="images/maps/ballon.png" />
+                                                                            </div>
+                                                                        }
+                                                                    </MarkerTemplate>
+                                                                </MapsMarker>
+                                                            </MapsMarkerSettings>
+                                                        </MapsLayer>
+                                                    </MapsLayers>
+                                                </SfMaps>
                                             </div>
 
                                         </div>

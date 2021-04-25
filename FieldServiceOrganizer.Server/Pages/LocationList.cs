@@ -4,6 +4,7 @@ using FieldServiceOrganizer.Server.Services;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Syncfusion.Blazor.Grids;
+using Syncfusion.Blazor.Maps;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
