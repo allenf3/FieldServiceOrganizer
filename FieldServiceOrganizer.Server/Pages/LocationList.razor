@@ -51,47 +51,6 @@ else
                                   AllowDeleting="true"
                                   ShowDeleteConfirmDialog="true">
                 </GridEditSettings>
-                <GridTemplates>
-                    <DetailTemplate>
-                        @{ 
-                            Location location = context as Location;
-                        }
-                        <Syncfusion.Blazor.Navigations.SfTab Heitht ="350" HeaderPlacement="Syncfusion.Blazor.Navigations.HeaderPosition.Top">
-                            <Syncfusion.Blazor.Navigations.TabItems>
-                                <Syncfusion.Blazor.Navigations.TabItem>
-                                    <ChildContent>
-                                        <Syncfusion.Blazor.Navigations.TabHeader Text="Details"></Syncfusion.Blazor.Navigations.TabHeader>
-                                    </ChildContent>
-                                    <ContentTemplate>
-                                        <div style="padding:12px">
-                                            <div>Id: @location.Id</div>
-                                            <div>Direction: @location.Direction</div>
-                                            <div>Street Number: @location.StreetNumber</div>
-                                            <div>Street: @location.Street</div>
-                                            <div>Unit: @location.Unit</div>
-                                            <div>Latitude: @location.Latitude</div>
-                                            <div>Longitude: @location.Longitude</div>
-
-                                        </div>
-                                    </ContentTemplate>
-                                </Syncfusion.Blazor.Navigations.TabItem>
-                                <Syncfusion.Blazor.Navigations.TabItem>
-                                    <ChildContent>
-                                        <Syncfusion.Blazor.Navigations.TabHeader Text="Map"></Syncfusion.Blazor.Navigations.TabHeader>
-                                    </ChildContent>
-                                    <ContentTemplate>
-                                        <div style="padding:12px">
-                                            <div style="height:260px; width:450px;float:left">
-                                               
-                                            </div>
-
-                                        </div>
-                                    </ContentTemplate>
-                                </Syncfusion.Blazor.Navigations.TabItem>
-                            </Syncfusion.Blazor.Navigations.TabItems>
-                        </Syncfusion.Blazor.Navigations.SfTab>
-                    </DetailTemplate>
-                </GridTemplates>
 
                 <GridColumns>
 
