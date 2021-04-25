@@ -16,7 +16,6 @@ namespace FieldServiceOrganizer.Server.Pages
     {
         public List<Location> Locations { get; set; }
         public ObservableCollection<Location> SelectedLocations { get; set; }
-        public RouteCalculator CalculatedRoute { get; set; }
         SfGrid<Location> Grid { get; set; }
         private bool RouteCalculated { get; set; }
         private int MinTimeInSeconds { get; set; }
@@ -89,7 +88,6 @@ namespace FieldServiceOrganizer.Server.Pages
             RouteCalculator routeCalculator = new(SelectedLocations.ToList());
             MinTimeInSeconds = routeCalculator.MinTimeInSeconds;
             DistanceOfMinTimeRoute = routeCalculator.DistanceInFeetOfMinTimeRoute;
-            CalculatedRoute = routeCalculator;
             RouteCalculated = true;
 
         }
